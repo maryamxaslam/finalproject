@@ -1,35 +1,20 @@
 {
-    "name": "my-blog-app",
-    "version": "1.1.0",
-    "description": "A dynamic microblogging platform built with Express and Handlebars.",
-    "main": "app.js",
+    "name": "microblog",
+    "version": "1.0.0",
+    "main": "server.js",
     "scripts": {
-      "start": "node app.js",
-      "dev": "nodemon app.js"
+      "start": "node server.js"
     },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/yourusername/my-blog-app.git"
-    },
-    "keywords": [
-      "blog",
-      "express",
-      "handlebars",
-      "node",
-      "social"
-    ],
-    "author": "Your Name <your.email@example.com>",
-    "license": "MIT",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
     "dependencies": {
+      "body-parser": "^1.20.2",
+      "canvas": "^2.11.2",
       "express": "^4.19.2",
       "express-handlebars": "^7.1.2",
-      "express-session": "^1.18.0",
-      "morgan": "^1.10.0",
-      "dotenv": "^16.0.1",
-      "body-parser": "^1.20.2"
-    },
-    "devDependencies": {
-      "nodemon": "^2.0.19"
+      "express-session": "^1.18.0"
     }
   }
   
