@@ -1,0 +1,105 @@
+{{! Use the main layout }}
+{{!< main }}
+
+<section class="dashboard">
+    <h1>Welcome, {{user.username}}!</h1>
+    <div class="dashboard-widgets">
+        <div class="widget settings-panel">
+            <h2>Settings</h2>
+            <button onclick="toggleSettings()">Edit Settings</button>
+            <div id="settings-form" style="display: none;">
+                <form>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{user.email}}" required>
+                    <label for="notifications">Notifications:</label>
+                    <select id="notifications" name="notifications">
+                        <option value="enabled" {{#if user.notificationsEnabled}}selected{{/if}}>Enabled</option>
+                        <option value="disabled" {{#unless user.notificationsEnabled}}selected{{/unless}}>Disabled</option>
+                    </select>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="widget user-stats">
+            <h2>Your Statistics</h2>
+            <ul>
+                <li>Total Posts: {{userStats.postsCount}}</li>
+                <li>Total Likes: {{userStats.likesCount}}</li>
+                <li>Followers: {{userStats.followersCount}}</li>
+                <li>Following: {{userStats.followingCount}}</li>
+            </ul>
+        </div>
+
+        <div class="widget community-feed">
+            <h2>Community Feed</h2>
+            <div class="feed-items">
+                {{#each communityPosts as |post|}}
+                <div class="feed-item">
+                    <h3>{{post.title}}</h3>
+                    <p>{{post.summary}}</p>
+                    <a href="/posts/{{post.id}}">Read more</a>
+                </div>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleSettings() {
+        const settingsForm = document.getElementById('settings-form');
+        settingsForm.style.display = settingsForm.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+<style>
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.dashboard-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.widget {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 30%;
+}
+
+.settings-panel form,
+.user-stats ul {
+    margin-top: 10px;
+}
+
+.feed-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-item {
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #6cd8ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #3bbbea;
+}
+</style>

@@ -1,0 +1,208 @@
+body {
+    background-color: #d0befa; 
+    font-family: 'Segoe UI', sans-serif; 
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.logo {
+    width: 60%;
+    height: auto;
+    max-width: 180px;
+    display: block;
+    margin: 0 auto;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    background-color: #efc0fe;
+    padding: 15px 0;
+}
+
+.navigation a {
+    color: #000;
+    background-color: #f7d6ff;
+    padding: 8px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 0 10px; 
+    font-weight: bold;
+}
+
+.navigation a:hover {
+    background-color: #e2affb;
+    transform: scale(1.1);
+}
+
+.article-container {
+    padding: 30px;
+    text-align: justify;
+}
+
+.form-section, .list-section {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.item-details {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.entry {
+    display: flex;
+    border: 2px solid #eee;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+.entry-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 30%;
+    margin-right: 20px;
+}
+
+.entry-text {
+    flex-grow: 2;
+}
+
+.status-bar h3, .status-bar h4 {
+    margin: 5px 0;
+}
+
+.status-bar h4 {
+    color: #666;
+}
+
+.status-bar p {
+    color: #444;
+    margin: 10px 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.action-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #007acc;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #e0e0e0;
+    color: #005690;
+}
+
+form {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 20px;
+}
+
+form h2 {
+    color: #333;
+}
+
+.input-group {
+    margin: 10px 0;
+}
+
+.input-group label {
+    font-weight: normal;
+    color: #555;
+}
+
+.input-group input,
+.input-group textarea {
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+.input-group textarea {
+    height: 150px; /* Added height for textareas */
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+}
+
+.button {
+    background-color: #9ad0f5;
+    color: #fff;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #82bcef;
+}
+
+.emoji-picker {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.authentication {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.auth-area {
+    background-color: #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #eecbff;
+    margin-top: 30px;
+}
+
+.sort-area {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.sort-button {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px

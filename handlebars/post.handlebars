@@ -1,0 +1,80 @@
+{{! This is the partial for a single post with enhanced features like tagging and comments }}
+<div class="entry">
+    <div class="entry-image">
+        <!-- Render the user's avatar or a default image -->
+        <img src="{{#if user.avatar_url}}{{user.avatar_url}}{{else}}/images/default-avatar.png{{/if}}" alt="{{user.username}}'s Avatar">
+    </div>
+    <div class="entry-text">
+        <div class="status-bar">
+            <h3>{{user.username}}</h3>
+            <h4>{{title}}</h4>
+            <p>{{content}}</p>
+            <!-- Tagging feature to show post categories or tags -->
+            <div class="post-tags">
+                {{#each tags}}
+                    <span class="tag">{{this}}</span>
+                {{/each}}
+            </div>
+            <!-- Displaying likes and interactive buttons -->
+            <div class="actions">
+                <span class="post-likes">Likes: {{post.likes}}</span>
+                <button class="action-button like-button" data-id="{{post.id}}" onclick="handleLikeClick(event)">♥ Like</button>
+                <button class="action-button delete-button" data-id="{{post.id}}" onclick="handleDeleteClick(event)">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
+                <!-- Comment button triggers comment section to expand -->
+                <button class="action-button comment-button" onclick="toggleComments(this)">💬 Comments</button>
+            </div>
+        </div>
+        <!-- Hidden comment section -->
+        <div class="comments" style="display: none;">
+            <ul>
+                {{#each comments}}
+                    <li>{{this.content}} - <strong>{{this.author}}</strong></li>
+                {{/each}}
+            </ul>
+            <form onsubmit="postComment(event, {{post.id}})">
+                <input type="text" placeholder="Add a comment..." required>
+                <button type="submit">Post</button>
+            </form>
+        </div>        
+    </div>
+</div>
+
+<script>
+    // Toggle comments visibility
+    function toggleComments(button) {
+        const commentsSection = button.closest('.entry').querySelector('.comments');
+        commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Handle post comment
+    function postComment(event, postId) {
+        event.preventDefault();
+        const commentInput = event.target.querySelector('input[type="text"]');
+        fetch(`/comment/${postId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content: commentInput.value })
+        }).then(() => {
+            window.location.reload();
+        });
+    }
+
+    // Handles the like button click
+    function handleLikeClick(event) {
+        const postId = event.target.getAttribute('data-id');
+        fetch(`/like/${postId}`, { method: 'POST' })
+            .then(() => window.location.reload()); 
+    }
+
+    // Handles the delete button click
+    function handleDeleteClick(event) {
+        const buttonElement = event.target.closest('.delete-button');
+        const postId = buttonElement.getAttribute('data-id');        
+        fetch(`/delete/${postId}`, { method: 'POST' })
+            .then(() => window.location.reload());
+    }
+</script>

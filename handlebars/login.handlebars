@@ -1,0 +1,63 @@
+{{! Use the main layout }}
+{{!< main }}
+
+<section class="authentication">
+    <div class="auth-area login-area">
+        <h2>Login</h2>
+        {{#if loginError}}
+            <p class="error-message">{{loginError}}</p>
+        {{/if}}        
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="button">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="separator">OR</div>
+
+    <div class="auth-area register-area">
+        <h2>Register</h2>
+        {{#if regError}}
+            <p class="error-message">{{regError}}</p>
+        {{/if}}
+        <form action="/register" method="POST">
+            <div class="input-group">
+                <label for="new-username">Username:</label>
+                <input type="text" name="username" id="new-username" required>
+            </div>
+            <div class="input-group">
+                <label for="new-password">Password:</label>
+                <input type="password" name="password" id="new-password" required>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="button">Register</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{{! Styling for error messages and section dividers }}
+<style>
+.error-message {
+    color: #D14343;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.separator {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: #666;
+}
+</style>
