@@ -13,7 +13,7 @@ app.engine('handlebars', expressHandlebars.engine({
     }
 }));
 app.set('view engine', 'handlebars');
-app.set('views', './handlebars');
+app.set('views', './views'); // Updated to point to the correct directory
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
