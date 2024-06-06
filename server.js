@@ -11,8 +11,8 @@ app.engine('handlebars', expressHandlebars.engine({
         ifCond: (v1, v2, options) => v1 === v2 ? options.fn(this) : options.inverse(this),
     }
 }));
-app.set('handlebars engine', 'handlebars');
-app.set('handlebars', './handlebars');
+app.set('view engine', 'handlebars');
+app.set('views', './handlebars');
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
