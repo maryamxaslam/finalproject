@@ -7,13 +7,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.engine('handlebars', expressHandlebars.engine({
+    layoutsDir: 'views/layouts',  // Specify the layout directory
+    partialsDir: 'views/partials', // Specify the partials directory
+    defaultLayout: 'main',         // Set the default layout file
     helpers: {
         toLowerCase: str => str.toLowerCase(),
         ifCond: (v1, v2, options) => v1 === v2 ? options.fn(this) : options.inverse(this),
     }
 }));
 app.set('view engine', 'handlebars');
-app.set('views', './views'); // Updated to point to the correct directory
+app.set('views', './views'); // Ensure the views directory is correctly set
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
@@ -30,15 +33,15 @@ app.get('/', async (req, res) => {
     try {
         let posts = await getPosts(req.query.sort);
         const user = req.session.user || {};
-        res.render('home', { posts, user });
+        res.render('partials/home', { posts, user }); // Adjusted to reflect the nested structure
     } catch (error) {
         console.error('Failed to load posts:', error);
-        res.status(500).render('error', { error: 'Failed to load posts' });
+        res.status(500).render('partials/error', { error: 'Failed to load posts' }); // Adjusted to reflect the nested structure
     }
 });
 
-app.get('/login', (req, res) => res.render('loginRegister', { loginError: req.query.error }));
-app.get('/register', (req, res) => res.render('loginRegister', { regError: req.query.error }));
+app.get('/login', (req, res) => res.render('partials/login', { loginError: req.query.error })); // Adjusted to reflect the nested structure
+app.get('/register', (req, res) => res.render('partials/login', { regError: req.query.error })); // Adjusted to reflect the nested structure
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -47,7 +50,7 @@ app.post('/login', async (req, res) => {
         req.session.user = user;
         res.redirect('/');
     } else {
-        res.render('loginRegister', { loginError: 'Invalid credentials' });
+        res.render('partials/login', { loginError: 'Invalid credentials' }); // Adjusted to reflect the nested structure
     }
 });
 
@@ -57,7 +60,7 @@ app.post('/register', async (req, res) => {
         req.session.user = user;
         res.redirect('/');
     } catch (error) {
-        res.render('loginRegister', { regError: error.message });
+        res.render('partials/login', { regError: error.message }); // Adjusted to reflect the nested structure
     }
 });
 
@@ -72,7 +75,7 @@ app.get('/logout', (req, res) => {
 
 app.use((err, req, res, next) => {
     console.error(err);
-    res.status(500).render('error', { error: 'Internal Server Error' });
+    res.status(500).render('partials/error', { error: 'Internal Server Error' }); // Adjusted to reflect the nested structure
 });
 
 app.listen(PORT, () => {
