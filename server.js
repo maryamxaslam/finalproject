@@ -1,7 +1,6 @@
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const session = require('express-session');
-const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
