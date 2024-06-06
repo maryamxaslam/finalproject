@@ -1,20 +1,22 @@
 {
     "name": "finalproject",
     "version": "1.0.0",
+    "description": "A Node.js project",
     "main": "server.js",
     "scripts": {
       "start": "node server.js"
     },
-    "keywords": [],
-    "author": "",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/maryamxaslam/finalproject.git"
+    },
+    "author": "Maryam",
     "license": "ISC",
-    "description": "",
     "dependencies": {
-      "body-parser": "^1.20.2",
-      "canvas": "^2.11.2",
-      "express": "^4.19.2",
-      "express-handlebars": "^7.1.2",
-      "express-session": "^1.18.0"
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "express-handlebars": "^5.3.3",
+      "express-session": "^1.17.2"
     }
   }
   
