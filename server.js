@@ -7,16 +7,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.engine('handlebars', expressHandlebars.engine({
-    layoutsDir: 'views/layouts',  // Specify the layout directory
-    partialsDir: 'views/partials', // Specify the partials directory
-    defaultLayout: 'main',         // Set the default layout file
+    layoutsDir: 'views/layouts',  
+    partialsDir: 'views/partials', 
+    defaultLayout: 'main',        
     helpers: {
         toLowerCase: str => str.toLowerCase(),
         ifCond: (v1, v2, options) => v1 === v2 ? options.fn(this) : options.inverse(this),
     }
 }));
 app.set('view engine', 'handlebars');
-app.set('views', './views'); // Ensure the views directory is correctly set
+app.set('views', './views'); 
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
@@ -33,15 +33,15 @@ app.get('/', async (req, res) => {
     try {
         let posts = await getPosts(req.query.sort);
         const user = req.session.user || {};
-        res.render('partials/home', { posts, user }); // Adjusted to reflect the nested structure
+        res.render('partials/home', { posts, user }); 
     } catch (error) {
         console.error('Failed to load posts:', error);
-        res.status(500).render('partials/error', { error: 'Failed to load posts' }); // Adjusted to reflect the nested structure
+        res.status(500).render('partials/error', { error: 'Failed to load posts' }); 
     }
 });
 
-app.get('/login', (req, res) => res.render('partials/login', { loginError: req.query.error })); // Adjusted to reflect the nested structure
-app.get('/register', (req, res) => res.render('partials/login', { regError: req.query.error })); // Adjusted to reflect the nested structure
+app.get('/login', (req, res) => res.render('partials/login', { loginError: req.query.error })); 
+app.get('/register', (req, res) => res.render('partials/login', { regError: req.query.error })); 
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -50,7 +50,7 @@ app.post('/login', async (req, res) => {
         req.session.user = user;
         res.redirect('/');
     } else {
-        res.render('partials/login', { loginError: 'Invalid credentials' }); // Adjusted to reflect the nested structure
+        res.render('partials/login', { loginError: 'Invalid credentials' }); 
     }
 });
 
@@ -60,7 +60,7 @@ app.post('/register', async (req, res) => {
         req.session.user = user;
         res.redirect('/');
     } catch (error) {
-        res.render('partials/login', { regError: error.message }); // Adjusted to reflect the nested structure
+        res.render('partials/login', { regError: error.message }); 
     }
 });
 
@@ -75,7 +75,7 @@ app.get('/logout', (req, res) => {
 
 app.use((err, req, res, next) => {
     console.error(err);
-    res.status(500).render('partials/error', { error: 'Internal Server Error' }); // Adjusted to reflect the nested structure
+    res.status(500).render('partials/error', { error: 'Internal Server Error' }); 
 });
 
 app.listen(PORT, () => {
@@ -83,28 +83,24 @@ app.listen(PORT, () => {
 });
 
 async function getPosts(sortOrder = 'newest') {
-    // Simulate fetching posts from a database
+
     let posts = [
         { id: 1, title: 'Hello World', content: 'This is a blog post', timestamp: new Date() },
-        // Add more posts
+        
     ];
     return sortOrder === 'oldest' ? posts.sort((a, b) => a.timestamp - b.timestamp) : posts.sort((a, b) => b.timestamp - a.timestamp);
 }
 
 async function loginUser(username, password) {
-    // Simulate user login
     const users = [
         { username: 'user1', password: 'pass1' },
-        // Add more users
     ];
     return users.find(user => user.username === username && user.password === password);
 }
 
 async function registerUser(username, password) {
-    // Simulate user registration
     const users = [
         { username: 'user1', password: 'pass1' },
-        // Add more users
     ];
     if (users.some(user => user.username === username)) {
         throw new Error('Username is taken');

@@ -1,6 +1,6 @@
 body {
-    background-color: #d0befa; 
-    font-family: 'Segoe UI', sans-serif; 
+    background-color: #fabed4; 
+    font-family:  sans-serif; 
 }
 
 .header {
@@ -20,13 +20,13 @@ body {
 .navigation {
     display: flex;
     justify-content: space-around;
-    background-color: #efc0fe;
+    background-color: #fec0c0;
     padding: 15px 0;
 }
 
 .navigation a {
     color: #000;
-    background-color: #f7d6ff;
+    background-color: #ffd6d9;
     padding: 8px 15px;
     border-radius: 10px;
     text-decoration: none;
@@ -35,7 +35,7 @@ body {
 }
 
 .navigation a:hover {
-    background-color: #e2affb;
+    background-color: #fbafb8;
     transform: scale(1.1);
 }
 
@@ -143,7 +143,7 @@ form h2 {
 }
 
 .input-group textarea {
-    height: 150px; /* Added height for textareas */
+    height: 150px; 
 }
 
 .buttons {

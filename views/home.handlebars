@@ -68,7 +68,7 @@ function toggleEmojiPanel() {
 }
 
 function fetchEmojis() {
-    fetch('/api/emojis') // Your API endpoint to fetch emojis
+    fetch('/api/emojis') // API endpoint to fetch emojis
         .then(response => response.json())
         .then(emojis => {
             allEmojis = emojis;
@@ -101,6 +101,6 @@ function insertEmoji(character) {
 }
 
 function sortPosts(order) {
-    window.location.href = `/?sort=${order}`; // Adjust based on your actual sorting mechanism
+    window.location.href = `/?sort=${order}`; 
 }
 </script>
