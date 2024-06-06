@@ -1,7 +1,6 @@
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const session = require('express-session');
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
